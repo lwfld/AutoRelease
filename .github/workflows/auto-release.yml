@@ -9,26 +9,12 @@ on:
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
-#     defaults:
-#       run:
-#         working-directory: 'umi-project'
 
     steps:
     - uses: actions/checkout@v3
 
-    - name: setup nodejs and npm
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
-
-    - name: setup yarn
-      run: npm install -g yarn
-
     - name: setup yarn env
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
-        cache: 'yarn'
+      uses: c-hive/gha-yarn-cache@v2
 
     - run: yarn install
     - run: yarn build
