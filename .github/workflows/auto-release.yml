@@ -13,18 +13,16 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - uses: actions/setup-node@v3
+    - name: yarn env setup
+      uses: actions/setup-node@v3
       with:
         node-version: '16'
         cache: 'yarn'
-    - run: yarn install
-    - run: yarn build
 
-    # - name: setup yarn env
-    #   uses: c-hive/gha-yarn-cache@v2
-
-    # - run: yarn install
-    # - run: yarn build
+    - name: dependencies installing & project building
+      run: |
+        yarn install
+        yarn build
 
     - name: project zipping
       uses: papeloto/action-zip@v1
@@ -33,10 +31,9 @@ jobs:
         dest: dist.zip
 
     - name: zip file releasing
-      uses: softprops/action-gh-release@v1
-      # if: startsWith(github.ref, 'refs/tags/')
+      uses: marvinpinto/action-automatic-releases@latest
       with:
-        tag_name: v1.0
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        title: "Dev Dist Build"
         files: dist.zip
-
-
