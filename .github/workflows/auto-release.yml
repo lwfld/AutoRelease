@@ -9,9 +9,9 @@ on:
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: 'umi-project'
+#     defaults:
+#       run:
+#         working-directory: 'umi-project'
 
     steps:
     - uses: actions/checkout@v3
