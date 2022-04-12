@@ -21,7 +21,7 @@ jobs:
 
     - name: dependencies installing & project building
       run: |
-        yarn install
+        yarn
         yarn build
 
     - name: project zipping
@@ -33,7 +33,7 @@ jobs:
     - name: zip file releasing
       uses: marvinpinto/action-automatic-releases@latest
       with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
         automatic_release_tag: "latest"
         title: "Dev Dist Build"
         files: dist.zip
