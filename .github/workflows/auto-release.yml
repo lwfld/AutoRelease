@@ -21,7 +21,7 @@ jobs:
 
     - name: dependencies installing & project building
       run: |
-        yarn install
+        yarn --prefer-offline
         yarn build
 
     - name: project zipping
